@@ -16,7 +16,8 @@ export function writeIfChanged(file, contents) {
     written.add(file);
     if (fs.existsSync(file) && fs.readFileSync(file, 'utf8') === contents)
         return;
-    writeIfChanged(file, contents);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, contents);
 }
 
 // Writes the per-component JSON consumed by the docs kit.
