@@ -1,0 +1,39 @@
+/* The component library's own stylesheet: Tailwind, tokens, base styles. */
+@import '../../foundation/src/app/globals.css';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@source '../../foundation/src/components';
+@source '../../foundation/src/stories';
+@source '../../foundation/src/utils';
+@source '../';
+@source '../../content';
+
+/* Docs chrome follows the component theme's accent colors. */
+:root,
+.dark {
+    --color-fd-primary: var(--primary);
+    --color-fd-primary-foreground: var(--primary-foreground);
+    --color-fd-ring: var(--ring);
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+    margin-right: 0 !important;
+    --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Sidebar group headings (desktop and mobile drawer): set apart from the
+   links below them. */
+#nd-sidebar p,
+#nd-sidebar-mobile p {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-fd-foreground);
+}
