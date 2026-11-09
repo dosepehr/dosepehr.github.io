@@ -1,0 +1,9 @@
+.next/
+out/
+.source/
+foundation/
+.cache/
+src/generated/
+content/docs/components/
+content/docs/form/
+package-lock.json
