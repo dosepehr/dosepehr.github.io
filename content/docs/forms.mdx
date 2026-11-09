@@ -1,0 +1,47 @@
+---
+title: Forms
+description: Field layout, validation with react-hook-form and zod, and placeholder conventions.
+---
+
+## Layout
+
+Stack a form's fields inside [`FieldGroup`](/docs/components/field). It spaces fields 32px apart (`gap-8`),
+nested groups included, and leaves room for each field's error message. Don't add margins between fields
+yourself.
+
+```tsx
+<form onSubmit={handleSubmit(onSubmit)}>
+    <FieldGroup>
+        <Input label="Email" placeholder="Enter the email" {...register('email')} />
+        <PasswordInput label="Password" placeholder="Enter the password" {...register('password')} />
+    </FieldGroup>
+</form>
+```
+
+## Validation
+
+Call `useForm` with a zod resolver in the form component, and keep each schema in its own file:
+
+```tsx
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { type SignInDTO, signInSchema } from './schemas/sign-in.schema';
+
+const { register, handleSubmit, formState } = useForm<SignInDTO>({
+    resolver: zodResolver(signInSchema),
+});
+```
+
+Inputs that hold more than a string — combo boxes, date pickers, file drops, OTP and tag inputs — have
+controlled versions under **Form fields**. Pass the form's `control` and a `name`; the value, change handler
+and error are wired for you.
+
+## Placeholders
+
+| Field                                      | English              | Persian                  |
+| ------------------------------------------ | -------------------- | ------------------------ |
+| Typed (input, textarea, password, OTP)     | `Enter the <field>`  | `<field> را وارد کنید`   |
+| Selection (select, combo box, date picker) | `Select the <field>` | `<field> را انتخاب کنید` |
+| Search                                     | `Search`             | `جستجو`                  |
+
+No trailing punctuation or ellipsis, no example values, and the placeholder never replaces the label.

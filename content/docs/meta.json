@@ -1,0 +1,13 @@
+{
+    "pages": [
+        "---Get started---",
+        "index",
+        "installation",
+        "theming",
+        "rtl",
+        "forms",
+        "...components",
+        "---Form fields---",
+        "...form"
+    ]
+}

@@ -1,0 +1,52 @@
+---
+title: Introduction
+description: Accessible, RTL-ready React components that you install with the shadcn CLI and own.
+---
+
+Frontend Foundation is a component library for React and Next.js, styled with Tailwind CSS v4 and built on
+[Radix UI](https://www.radix-ui.com) and [Base UI](https://base-ui.com) primitives.
+
+It isn't a package you install from npm. Each component is published as a
+[shadcn registry](https://ui.shadcn.com/docs/registry) item, so the shadcn CLI copies its source into your
+project. From then on the code is yours to read, change and extend.
+
+## What's inside
+
+- **Components** — buttons, forms, overlays, navigation, data display, chat UI and more, each with a live
+  playground, examples and an API reference.
+- **Form fields** — [react-hook-form](https://react-hook-form.com) bindings for the inputs that need them.
+- **Theme tokens** — every color and the radius are CSS variables, with light and dark modes. Build your own
+  on the [Themes](/themes) page.
+- **Hooks and utilities** — query and mutation wrappers, a typed HTTP client, a store factory and more, from the
+  same registry.
+
+## Principles
+
+- **RTL first.** Components use logical properties (`ms-*`, `pe-*`, `start-*`), so they mirror correctly in
+  Persian and Arabic interfaces. See [RTL](/docs/rtl).
+- **Accessible by default.** Keyboard navigation, focus management and ARIA come from the underlying
+  primitives.
+- **Consistent forms.** Every field shares one layout, spacing and error style. See [Forms](/docs/forms).
+
+<Cards>
+    <Card
+        title="Installation"
+        href="/docs/installation"
+        description="Add the components to your project."
+    />
+    <Card
+        title="Themes"
+        href="/themes"
+        description="Pick colors and copy the CSS."
+    />
+    <Card
+        title="Button"
+        href="/docs/components/button"
+        description="Start with the most-used component."
+    />
+    <Card
+        title="Forms"
+        href="/docs/forms"
+        description="Layout, validation and placeholder conventions."
+    />
+</Cards>

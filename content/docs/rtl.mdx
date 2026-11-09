@@ -1,0 +1,42 @@
+---
+title: RTL
+description: Right-to-left layouts for Persian and Arabic interfaces.
+---
+
+Frontend Foundation is built for right-to-left interfaces from the start.
+
+## Set the direction
+
+Set `dir` on the document and wrap the app in the [Direction](/docs/components/direction) provider, so
+components that position things in JavaScript (menus, sliders, carousels) know the direction too:
+
+```tsx title="app/layout.tsx"
+import { DirectionProvider } from '@/components/ui/Direction';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <html lang="fa" dir="rtl">
+            <body>
+                <DirectionProvider dir="rtl">{children}</DirectionProvider>
+            </body>
+        </html>
+    );
+}
+```
+
+Every preview on this site has an **LTR / RTL** switch, so you can check any component in both directions.
+
+## Logical properties
+
+Components use logical utilities (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`) instead
+of `left` and `right`, so they mirror automatically. Use the same utilities in your own code.
+
+## Designs from Figma
+
+Figma lays out an auto-layout row's children left to right, even in RTL designs, while in a `dir="rtl"` page
+the first DOM child renders on the right. When implementing a Persian design:
+
+- Reverse each row's children from the Figma order.
+- Swap alignment: Figma's `flex-start` (left edge) is `justify-end` in RTL CSS, and `flex-end` is
+  `justify-start`.
+- Check: «ردیف» is the rightmost table column, «عملیات» the leftmost, and «همه» the rightmost filter tab.

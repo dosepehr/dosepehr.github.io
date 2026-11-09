@@ -1,0 +1,64 @@
+---
+title: Installation
+description: Add Frontend Foundation components to a React or Next.js project.
+---
+
+## Requirements
+
+- React 19 and a bundler that supports Tailwind CSS v4 (Next.js 15+, Vite, …).
+- [Tailwind CSS v4](https://tailwindcss.com/docs/installation).
+
+## 1. Set up shadcn
+
+If your project isn't a shadcn project yet, initialise it. This creates `components.json` and the base
+styles.
+
+```bash
+npx shadcn@latest init
+```
+
+## 2. Add components
+
+Install a single component by its registry URL. The CLI also installs the components, hooks and packages it
+depends on.
+
+```bash
+npx shadcn@latest add https://dosepehr.github.io/frontend-foundation/r/button.json
+```
+
+Or install everything at once:
+
+```bash
+npx shadcn@latest add https://dosepehr.github.io/frontend-foundation/r/index.json
+```
+
+Every component page lists its own install command.
+
+## 3. Add the theme
+
+The `theme` item installs the color and radius tokens into your global stylesheet:
+
+```bash
+npx shadcn@latest add https://dosepehr.github.io/frontend-foundation/r/theme.json
+```
+
+Want different colors? Build them on the [Themes](/themes) page and paste the result after the defaults.
+
+## Where files land
+
+The CLI writes files to the folders in your `components.json` aliases and rewrites imports to match. For a
+feature-based layout with shared code in `src/shared`, use:
+
+```json title="components.json"
+{
+    "aliases": {
+        "components": "@/shared",
+        "ui": "@/shared/ui",
+        "hooks": "@/shared/hooks",
+        "lib": "@/shared/lib",
+        "utils": "@/shared/lib/utils"
+    }
+}
+```
+
+With the default shadcn aliases, components land in `components/ui`, hooks in `hooks` and utilities in `lib`.
