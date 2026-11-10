@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import ExampleView from './components/ExampleView';
 import PlaygroundView from './components/PlaygroundView';
 import PropsView from './components/PropsView';
@@ -16,7 +17,13 @@ export function createComponentDocs(
         const resolved = data.playgroundStory
             ? stories.get(data.playgroundStory)
             : undefined;
-        return resolved ? <PlaygroundView resolved={resolved} /> : null;
+        // The playground reads its props from the URL (useSearchParams), which
+        // a static export can only do on the client, inside Suspense.
+        return resolved ? (
+            <Suspense fallback={null}>
+                <PlaygroundView resolved={resolved} />
+            </Suspense>
+        ) : null;
     };
 
     const Example = ({ id }: { id: string }) => {

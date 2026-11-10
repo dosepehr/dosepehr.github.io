@@ -17,11 +17,11 @@ export default function PlaygroundView({
 }: {
     resolved: ResolvedStory;
 }) {
-    const { args, setArg, reset } = usePlaygroundArgs(resolved.args);
     const controls = useMemo(
         () => buildControls(resolved.argTypes, resolved.args),
         [resolved],
     );
+    const { args, setArg, reset } = usePlaygroundArgs(resolved.args, controls);
     const code =
         resolved.info.source ?? argsToJsx(resolved.componentName, args);
 
