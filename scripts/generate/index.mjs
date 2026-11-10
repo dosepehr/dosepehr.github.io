@@ -3,6 +3,7 @@
 // one MDX page, one data file and one client module per component folder.
 // Run before `next dev` / `next build` (see the docs:* npm scripts).
 
+import fs from 'node:fs';
 import path from 'node:path';
 import { readComponentContent } from './content.mjs';
 import { defaultExportName, discoverComponents } from './discover.mjs';
@@ -11,6 +12,7 @@ import {
     COMPONENT_GROUPS,
     CONTENT,
     GENERATED,
+    SRC,
     toTitle,
 } from './paths.mjs';
 import { extractProps } from './props.mjs';
@@ -99,9 +101,34 @@ writeThemeDefaults();
 const counts = Object.fromEntries(
     CATEGORIES.map((c) => [c.id, (byCategory.get(c.id) ?? []).length]),
 );
+const byGroup = Object.fromEntries(
+    COMPONENT_GROUPS.map((group) => [
+        group,
+        (byCategory.get('components') ?? []).filter((e) => e.group === group)
+            .length,
+    ]),
+);
+// Folder names under src/<dir>, for the landing page's project overview.
+const listFolders = (dir, skip = []) =>
+    fs
+        .readdirSync(path.join(SRC, dir), { withFileTypes: true })
+        .filter((d) => d.isDirectory() && !skip.includes(d.name))
+        .map((d) => d.name)
+        .sort();
+// MockProvider is dev-only and not published.
+const providers = listFolders('components/providers', ['MockProvider']);
 writeIfChanged(
     path.join(GENERATED, 'summary.json'),
-    `${JSON.stringify({ total: components.length, byCategory: counts }, null, 2)}\n`,
+    `${JSON.stringify(
+        {
+            total: components.length,
+            byCategory: counts,
+            byGroup,
+            providers,
+        },
+        null,
+        2,
+    )}\n`,
 );
 for (const category of CATEGORIES) {
     const entries = byCategory.get(category.id) ?? [];
