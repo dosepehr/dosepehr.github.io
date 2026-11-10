@@ -1,7 +1,7 @@
 import { DocsProvider } from '@/core/providers/DocsProvider';
 import { siteName, siteUrl } from '@/core/site';
 import { themeBootScript } from '@/core/theme/bootScript';
-import { lato } from '@foundation-public/fonts';
+import { estedad, lato } from '@foundation-public/fonts';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './global.css';
@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html lang="en" className={lato.variable} suppressHydrationWarning>
+        <html
+            lang="en"
+            className={`${lato.variable} ${estedad.variable}`}
+            suppressHydrationWarning
+        >
             <head>
                 {/* Picks a random theme for a new visit and applies the saved one before the first paint. */}
                 <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />

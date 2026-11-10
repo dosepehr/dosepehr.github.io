@@ -37,3 +37,11 @@ html > body[data-scroll-locked] {
     text-transform: uppercase;
     color: var(--color-fd-foreground);
 }
+
+/* Persian text (lang="fa") uses Estedad, also inside this English site.
+   In the base layer, so font utilities still apply. */
+@layer base {
+    [lang|='fa'] {
+        font-family: var(--font-estedad), system-ui, sans-serif;
+    }
+}

@@ -34,6 +34,7 @@ export default function PreviewFrame({ layout, children }: PreviewFrameProps) {
             </div>
             <div
                 dir={dir}
+                lang={dir === 'rtl' ? 'fa' : undefined}
                 data-preview-canvas=""
                 className={cn(
                     'min-h-40 w-full overflow-x-auto',
