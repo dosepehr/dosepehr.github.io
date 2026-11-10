@@ -4,6 +4,7 @@ import CtaBanner from './components/CtaBanner';
 import FeatureGrid from './components/features/FeatureGrid';
 import HeroBento from './components/hero/bento/HeroBento';
 import MotionProvider from './components/MotionProvider';
+import LayerStackSection from './components/project/stack/LayerStackSection';
 import RtlDemo from './components/rtl/RtlDemo';
 import SiteFooter from './components/SiteFooter';
 import StatsStrip from './components/stats/StatsStrip';
@@ -20,6 +21,7 @@ export default function HomePage() {
                 <CodeCompare />
                 <RtlDemo />
                 <ThemeSection />
+                <LayerStackSection />
                 <AiSection />
                 <InstallSteps />
                 <CtaBanner />
