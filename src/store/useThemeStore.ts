@@ -1,5 +1,6 @@
 import { THEME_STORE_KEY } from '@/core/theme/persistence';
 import { DEFAULT_PRESET_ID, PRESETS } from '@/core/theme/presets';
+import { pickRandomPreset, pickRandomRadius } from '@/core/theme/random';
 import type { ColorKey, ThemeConfig, ThemeMode } from '@/core/theme/types';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
@@ -10,6 +11,8 @@ interface ThemeState extends ThemeConfig {
     applyPreset: (id: string) => void;
     setColor: (mode: ThemeMode, key: ColorKey, hex: string) => void;
     setRadius: (radius: number) => void;
+    /** A random preset and radius, different from the current preset. */
+    shuffle: () => void;
     reset: () => void;
 }
 
@@ -53,6 +56,19 @@ export const useThemeStore = create<ThemeState>()(
                     ),
                 setRadius: (radius) =>
                     set({ radius }, false, 'theme/setRadius'),
+                shuffle: () =>
+                    set(
+                        (s) => {
+                            const preset = pickRandomPreset(s.presetId);
+                            return {
+                                presetId: preset.id,
+                                colors: structuredClone(preset.colors),
+                                radius: pickRandomRadius(),
+                            };
+                        },
+                        false,
+                        'theme/shuffle',
+                    ),
                 reset: () => set(initial, false, 'theme/reset'),
             }),
             {

@@ -3,12 +3,8 @@
 export const THEME_STORE_KEY = 'ff-docs-theme';
 export const THEME_CSS_KEY = 'ff-docs-theme-css';
 export const THEME_STYLE_ID = 'ff-theme';
-
-/**
- * Inline <head> script: re-applies the last saved theme CSS before the first
- * paint, so a custom theme doesn't flash the default colors on load.
- */
-export const themeBootScript = `try{var c=localStorage.getItem('${THEME_CSS_KEY}');if(c){var s=document.createElement('style');s.id='${THEME_STYLE_ID}';s.textContent=c;document.head.appendChild(s)}}catch(e){}`;
+/** sessionStorage flag: set once per visit, so a new visit gets a random theme. */
+export const THEME_SESSION_KEY = 'ff-docs-theme-session';
 
 /** Writes the theme CSS into the page and remembers it for the boot script. */
 export function applyThemeCss(css: string) {
