@@ -1,10 +1,9 @@
 'use client';
 
-import { cn } from '@foundation/utils/funcs/cn';
-import { motion } from 'motion/react';
 import { useState } from 'react';
 import Reveal from '../Reveal';
 import SectionHeading from '../SectionHeading';
+import SegmentedToggle from '../SegmentedToggle';
 import RtlPreview from './RtlPreview';
 
 const DIRECTIONS = [
@@ -23,39 +22,13 @@ export default function RtlDemo() {
                 description="Components use logical properties, so Persian and Arabic interfaces mirror without extra code."
             />
             <Reveal className="flex w-full flex-col items-center gap-8">
-                <div
-                    className="relative flex rounded-full border bg-fd-card p-1"
-                    role="group"
-                    aria-label="Direction"
-                >
-                    {DIRECTIONS.map(({ value, label }) => (
-                        <button
-                            key={value}
-                            type="button"
-                            aria-pressed={dir === value}
-                            onClick={() => setDir(value)}
-                            className={cn(
-                                'relative z-10 rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
-                                dir === value
-                                    ? 'text-primary-foreground'
-                                    : 'text-fd-muted-foreground',
-                            )}
-                        >
-                            {dir === value && (
-                                <motion.span
-                                    layoutId="rtl-pill"
-                                    className="absolute inset-0 -z-10 rounded-full bg-primary"
-                                    transition={{
-                                        type: 'spring',
-                                        stiffness: 400,
-                                        damping: 30,
-                                    }}
-                                />
-                            )}
-                            {label}
-                        </button>
-                    ))}
-                </div>
+                <SegmentedToggle
+                    options={DIRECTIONS}
+                    value={dir}
+                    onChange={setDir}
+                    layoutId="rtl-pill"
+                    label="Direction"
+                />
                 <RtlPreview dir={dir} />
             </Reveal>
         </section>
