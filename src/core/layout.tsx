@@ -1,3 +1,4 @@
+import Logo from '@/shared/ui/Logo';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { BookOpen, Component, Palette } from 'lucide-react';
 import { githubUrl, siteName } from './site';
@@ -7,7 +8,14 @@ import { githubUrl, siteName } from './site';
 // tree (and "Components" would look active on every component page).
 export function baseOptions(): BaseLayoutProps {
     return {
-        nav: { title: <span className="font-semibold">{siteName}</span> },
+        nav: {
+            title: (
+                <span className="flex items-center gap-2 font-semibold">
+                    <Logo />
+                    {siteName}
+                </span>
+            ),
+        },
         githubUrl,
         links: [
             { text: 'Docs', url: '/docs', icon: <BookOpen />, on: 'nav' },
