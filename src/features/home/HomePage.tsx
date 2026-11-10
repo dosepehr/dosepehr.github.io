@@ -1,9 +1,10 @@
+import AiSection from './components/ai/AiSection';
+import CodeCompare from './components/compare/CodeCompare';
 import CtaBanner from './components/CtaBanner';
 import FeatureGrid from './components/features/FeatureGrid';
-import Hero from './components/hero/Hero';
+import HeroBento from './components/hero/bento/HeroBento';
 import MotionProvider from './components/MotionProvider';
 import RtlDemo from './components/rtl/RtlDemo';
-import ShowcaseSection from './components/ShowcaseSection';
 import SiteFooter from './components/SiteFooter';
 import StatsStrip from './components/stats/StatsStrip';
 import InstallSteps from './components/steps/InstallSteps';
@@ -13,13 +14,14 @@ export default function HomePage() {
     return (
         <MotionProvider>
             <main className="flex flex-col overflow-x-clip">
-                <Hero />
+                <HeroBento />
                 <StatsStrip />
                 <FeatureGrid />
+                <CodeCompare />
                 <RtlDemo />
                 <ThemeSection />
+                <AiSection />
                 <InstallSteps />
-                <ShowcaseSection />
                 <CtaBanner />
                 <SiteFooter />
             </main>

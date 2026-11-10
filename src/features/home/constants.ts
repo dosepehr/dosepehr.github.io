@@ -142,3 +142,41 @@ export const RTL_COPY = {
         badge: 'ارسال شد',
     },
 } as const;
+
+// "Less markup" comparison: the same button, hand-rolled vs the component.
+export const TAILWIND_BUTTON = `<button
+    type="button"
+    className="group inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-lg
+        bg-blue-600 px-4 text-sm font-medium whitespace-nowrap text-white shadow-xs
+        outline-none transition-all hover:bg-blue-700 focus-visible:ring-3
+        focus-visible:ring-blue-600/50 disabled:pointer-events-none disabled:opacity-50
+        dark:bg-blue-500 dark:hover:bg-blue-400 rtl:flex-row-reverse"
+>
+    Get started
+    <svg className="size-4 transition-transform group-hover:translate-x-0.5
+        rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+</button>`;
+
+export const COMPONENT_BUTTON = `import Button from '@/components/ui/Button';
+
+<Button showArrow>Get started</Button>`;
+
+// The AI chat demo: the question, and the code the "assistant" streams back.
+export const CHAT_QUESTION = 'Make me a pricing card with a highlighted plan.';
+
+export const CHAT_ANSWER_CODE = `import Badge from '@/components/ui/Badge';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+
+export function PricingCard() {
+    return (
+        <Card title="Pro" description="For growing teams" action={<Badge>Popular</Badge>}>
+            <p className="text-3xl font-bold">$19</p>
+            <Button showArrow className="w-full">
+                Upgrade
+            </Button>
+        </Card>
+    );
+}`;

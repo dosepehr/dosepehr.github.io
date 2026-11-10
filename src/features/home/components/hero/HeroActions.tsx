@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function HeroActions() {
     return (
         <motion.div
-            className="flex flex-wrap justify-center gap-3 lg:justify-start"
+            className="flex flex-wrap justify-center gap-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
