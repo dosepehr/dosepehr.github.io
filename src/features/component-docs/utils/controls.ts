@@ -2,6 +2,11 @@ import type { Args, ArgTypes, Control, ControlSpec } from '../types';
 
 const NON_CONTROLS = new Set(['object', 'file', 'date']);
 
+// Props the playground can't demonstrate with its text-only children:
+// `asChild` needs a single child element to render as, so toggling it on a
+// labelled component would only throw.
+const HIDDEN_PROPS = new Set(['asChild']);
+
 function fromArgType(
     argType: ArgTypes[string],
     value: unknown,
@@ -42,6 +47,7 @@ export function buildControls(argTypes: ArgTypes, args: Args): ControlSpec[] {
     const names = new Set([...Object.keys(argTypes), ...Object.keys(args)]);
     const specs: ControlSpec[] = [];
     for (const name of names) {
+        if (HIDDEN_PROPS.has(name)) continue;
         const argType = argTypes[name] ?? {};
         const control = argTypes[name]
             ? fromArgType(argType, args[name])
