@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             suppressHydrationWarning
         >
             <head>
-                {/* Picks a random theme for a new visit and applies the saved one before the first paint. */}
+                {/* Picks a random theme on each page load and applies the saved one before the first paint. */}
                 <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
             </head>
             <body className="flex min-h-screen flex-col">
