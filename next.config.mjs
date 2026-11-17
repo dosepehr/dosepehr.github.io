@@ -9,6 +9,11 @@ const config = {
     trailingSlash: true,
     reactStrictMode: true,
     images: { unoptimized: true },
+    turbopack: {
+        // Foundation stories import `storybook/test` for their play tests,
+        // which the docs never run; resolve it to a stub (src/core/storybookTest.ts).
+        resolveAlias: { 'storybook/test': './src/core/storybookTest.ts' },
+    },
     experimental: {
         // The site's CSS is compiled from the synced, gitignored foundation/
         // folder. Turbopack's persistent dev cache doesn't notice those files

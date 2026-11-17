@@ -18,7 +18,8 @@
         "paths": {
             "@/*": ["./src/*"],
             "@foundation/*": ["./foundation/src/*"],
-            "@foundation-public/*": ["./foundation/public/*"]
+            "@foundation-public/*": ["./foundation/public/*"],
+            "storybook/test": ["./src/core/storybookTest.ts"]
         }
     },
     "include": [

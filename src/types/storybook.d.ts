@@ -37,8 +37,11 @@ declare module '@storybook/nextjs-vite' {
         argTypes?: Record<string, unknown>;
         decorators?: Decorator<P>[];
         parameters?: Record<string, unknown>;
+        globals?: Record<string, unknown>;
         render?: (args: P, context: StoryContext<P>) => ReactNode;
-        play?: (context: unknown) => unknown;
+        play?: (
+            context: StoryContext<P> & { canvasElement: HTMLElement },
+        ) => unknown;
     }
 
     export type Meta<T = unknown> = Annotations<PropsOf<T>> & {
