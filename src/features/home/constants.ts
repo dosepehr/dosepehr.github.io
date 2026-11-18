@@ -34,7 +34,7 @@ export const FEATURES: Feature[] = [
     {
         title: 'RTL-first',
         description:
-            'Logical properties and a direction provider, so Persian and Arabic layouts mirror correctly.',
+            'Logical properties and a direction provider mirror Persian and Arabic layouts, and number fields read Persian and Arabic digits.',
         Icon: Languages,
     },
     {
@@ -52,7 +52,7 @@ export const FEATURES: Feature[] = [
     {
         title: 'Forms, done once',
         description:
-            'Fields with labels, errors and loading states, a 32px rhythm, and react-hook-form bindings for the complex inputs.',
+            'Date ranges, times, prices in words, mobile numbers and tree selects, each with a react-hook-form binding, plus a Stepper for multi-step flows.',
         Icon: FormInput,
         wide: true,
     },

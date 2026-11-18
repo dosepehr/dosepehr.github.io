@@ -58,3 +58,13 @@ export const TEAM = [
     { initials: 'NK', name: 'Nora K.', role: 1 },
     { initials: 'AM', name: 'Arash M.', role: 2 },
 ];
+
+export const REVIEWS = { average: 4.5, count: 128 };
+
+// Nightly prices of the stays the price filter tile searches.
+export const STAY_PRICES = [
+    45, 60, 72, 85, 90, 110, 120, 135, 150, 165, 180, 210, 240, 260, 290, 320,
+    350, 380, 420, 480,
+];
+
+export const PRICE_BOUNDS = { min: 0, max: 500 };

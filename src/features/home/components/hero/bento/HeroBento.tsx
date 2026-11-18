@@ -6,6 +6,8 @@ import GoalTile from './tiles/GoalTile';
 import NotificationsTile from './tiles/NotificationsTile';
 import OtpTile from './tiles/OtpTile';
 import PlayerTile from './tiles/PlayerTile';
+import PriceRangeTile from './tiles/PriceRangeTile';
+import RatingTile from './tiles/RatingTile';
 import SignUpTile from './tiles/SignUpTile';
 import SortableTableTile from './tiles/SortableTableTile';
 import TeamTile from './tiles/TeamTile';
@@ -27,7 +29,8 @@ export default function HeroBento() {
                 <div className="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-4">
                     <div className={COLUMN}>
                         <CalendarTile index={0} />
-                        <NotificationsTile index={4} className={FILL} />
+                        <PriceRangeTile index={4} />
+                        <NotificationsTile index={8} className={FILL} />
                     </div>
                     <div className={COLUMN}>
                         <SignUpTile index={1} />
@@ -36,12 +39,13 @@ export default function HeroBento() {
                     <div className={COLUMN}>
                         <ChatTile index={2} />
                         <OtpTile index={6} />
-                        <ThemeTile index={8} className={FILL} />
+                        <ThemeTile index={9} className={FILL} />
                     </div>
                     <div className={COLUMN}>
                         <SortableTableTile index={3} />
                         <PlayerTile index={7} />
-                        <TeamTile index={9} className={FILL} />
+                        <RatingTile index={10} />
+                        <TeamTile index={11} className={FILL} />
                     </div>
                 </div>
             </div>

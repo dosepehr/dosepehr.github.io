@@ -1,4 +1,5 @@
 import AiSection from './components/ai/AiSection';
+import BookingSection from './components/booking/BookingSection';
 import CodeCompare from './components/compare/CodeCompare';
 import CtaBanner from './components/CtaBanner';
 import FeatureGrid from './components/features/FeatureGrid';
@@ -18,6 +19,7 @@ export default function HomePage() {
                 <HeroBento />
                 <StatsStrip />
                 <FeatureGrid />
+                <BookingSection />
                 <CodeCompare />
                 <RtlDemo />
                 <ThemeSection />
