@@ -20,6 +20,19 @@ export const waitFor = notAvailable as unknown as (
     callback: () => unknown,
     options?: unknown,
 ) => Promise<void>;
+// Mirrors the Testing Library query families by name, so stories can chain
+// on `findAllBy*(...)` promises and index `*AllBy*` arrays.
+type Query<T> = (...args: unknown[]) => T;
+type BoundQueries = {
+    [K in `getBy${string}` | `queryBy${string}`]: Query<HTMLElement>;
+} & {
+    [K in `getAllBy${string}` | `queryAllBy${string}`]: Query<HTMLElement[]>;
+} & {
+    [K in `findBy${string}`]: Query<Promise<HTMLElement>>;
+} & {
+    [K in `findAllBy${string}`]: Query<Promise<HTMLElement[]>>;
+};
+
 export const within = notAvailable as unknown as (
     element: HTMLElement,
-) => Record<string, (...args: unknown[]) => HTMLElement>;
+) => BoundQueries;
