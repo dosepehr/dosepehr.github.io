@@ -102,6 +102,7 @@ export function parseStoriesFile(file) {
         ts.ScriptKind.TSX,
     );
     let componentName = null;
+    let metaHasArgs = false;
     const stories = [];
     const imports = localImports(sf, file);
     for (const statement of sf.statements) {
@@ -118,6 +119,7 @@ export function parseStoriesFile(file) {
                 componentName = component
                     ? unwrap(component.initializer).getText(sf)
                     : null;
+                metaHasArgs = Boolean(getProp(init, 'args'));
             } else if (exported) {
                 const render = getProp(init, 'render');
                 const label = getProp(init, 'name');
@@ -136,5 +138,13 @@ export function parseStoriesFile(file) {
             }
         }
     }
-    return { componentName, stories };
+    // A story also gets the meta's args (the runtime merges them), so a
+    // `Default: Story = {}` under `meta.args` still has props to play with.
+    return {
+        componentName,
+        stories: stories.map((s) => ({
+            ...s,
+            hasArgs: s.hasArgs || metaHasArgs,
+        })),
+    };
 }

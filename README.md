@@ -30,6 +30,9 @@ docs re-sync, regenerate and hot-reload, with no restart.
 
 Each component page's title, intro and usage notes live in `content/components/<slug>.md` (front matter +
 Markdown body); the playground and examples come from the component's stories in frontend-foundation.
+The playground is the `Default` (or `Playground`) story when it has args, its own or the meta's; otherwise the
+first story with args, preferring one without a custom `render`. A page with no story that has args gets no
+playground, only examples.
 
 ## Structure
 
