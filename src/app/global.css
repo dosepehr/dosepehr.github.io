@@ -8,6 +8,12 @@
 @source '../../foundation/src/utils';
 @source '../';
 @source '../../content';
+/* Turbopack can't parse `::highlight()`; the rule is inlined from
+   src/core/theme/searchHighlightStyle.ts instead. */
+@source not
+    inline(
+        '[&_::highlight(fd-search)]:text-fd-primary [&_::highlight(fd-search)]:underline'
+    );
 
 /* Docs chrome follows the component theme's accent colors. */
 :root,

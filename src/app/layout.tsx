@@ -1,6 +1,7 @@
 import { DocsProvider } from '@/core/providers/DocsProvider';
 import { siteName, siteUrl } from '@/core/site';
 import { themeBootScript } from '@/core/theme/bootScript';
+import { searchHighlightStyle } from '@/core/theme/searchHighlightStyle';
 import { estedad, lato } from '@foundation-public/fonts';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
@@ -23,6 +24,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <head>
                 {/* Picks a random theme on each page load and applies the saved one before the first paint. */}
                 <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+                <style
+                    dangerouslySetInnerHTML={{ __html: searchHighlightStyle }}
+                />
             </head>
             <body className="flex min-h-screen flex-col">
                 <DocsProvider>{children}</DocsProvider>
