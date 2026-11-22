@@ -9,11 +9,10 @@
 @source '../';
 @source '../../content';
 /* Turbopack can't parse `::highlight()`; the rule is inlined from
-   src/core/theme/searchHighlightStyle.ts instead. */
-@source not
-    inline(
-        '[&_::highlight(fd-search)]:text-fd-primary [&_::highlight(fd-search)]:underline'
-    );
+   src/core/theme/searchHighlightStyle.ts instead. Keep this on one line:
+   Tailwind only recognizes `not inline(` with a single space between them. */
+/* prettier-ignore */
+@source not inline('[&_::highlight(fd-search)]:text-fd-primary [&_::highlight(fd-search)]:underline');
 
 /* Docs chrome follows the component theme's accent colors. */
 :root,
