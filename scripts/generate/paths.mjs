@@ -24,6 +24,7 @@ export const COMPONENT_GROUPS = [
     'Overlays',
     'Navigation',
     'Data display',
+    'Charts',
     'Feedback',
     'Layout',
     'Chat',

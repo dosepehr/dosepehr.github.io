@@ -20,6 +20,16 @@ export const waitFor = notAvailable as unknown as (
     callback: () => unknown,
     options?: unknown,
 ) => Promise<void>;
+// Unlike the play helpers, `fn()` runs when a story's `args` are built (e.g.
+// `onRetry: fn()`), so it returns a working handler instead of throwing: the
+// implementation it wraps, or a no-op that fits any callback prop.
+export function fn(): (...args: unknown[]) => void;
+export function fn<T extends (...args: never[]) => unknown>(
+    implementation: T,
+): T;
+export function fn(implementation?: (...args: unknown[]) => unknown) {
+    return implementation ?? (() => {});
+}
 // Mirrors the Testing Library query families by name, so stories can chain
 // on `findAllBy*(...)` promises and index `*AllBy*` arrays.
 type Query<T> = (...args: unknown[]) => T;

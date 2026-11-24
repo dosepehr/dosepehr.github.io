@@ -11,13 +11,17 @@ declare module '@storybook/nextjs-vite' {
     } from 'react';
 
     type AnyComponent = JSXElementConstructor<never>;
+    // `StoryObj<Meta<typeof X>>` passes a Meta type, whose `component` field
+    // no longer knows X, so Meta carries X's props in a type-only field.
     type PropsOf<T> = T extends AnyComponent
         ? ComponentProps<T>
-        : T extends { component?: infer C }
-          ? C extends AnyComponent
-              ? ComponentProps<C>
-              : Record<string, unknown>
-          : Record<string, unknown>;
+        : T extends { readonly __props?: infer P }
+          ? NonNullable<P>
+          : T extends { component?: infer C }
+            ? C extends AnyComponent
+                ? ComponentProps<C>
+                : Record<string, unknown>
+            : Record<string, unknown>;
 
     interface StoryContext<P> {
         args: P;
@@ -48,6 +52,8 @@ declare module '@storybook/nextjs-vite' {
         title?: string;
         component?: AnyComponent | ComponentType<never>;
         subcomponents?: Record<string, AnyComponent>;
+        /** Type-only; never set at runtime. */
+        readonly __props?: PropsOf<T>;
     };
 
     export type StoryObj<T = unknown> = Annotations<PropsOf<T>>;
