@@ -5,6 +5,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import {
+    ENTRY_IMPORT,
+    entryMdx,
+    readChangelog,
+    writeChangelog,
+} from './changelog.mjs';
 import { readComponentContent } from './content.mjs';
 import { defaultExportName, discoverComponents } from './discover.mjs';
 import {
@@ -46,6 +52,9 @@ const propsByFile = extractProps(
 
 const missing = [];
 const byCategory = new Map();
+const changelog = readChangelog(new Set(components.map((c) => c.slug)));
+// Titles and categories of every page, for the changelog's component links.
+const changelogComponents = [];
 
 for (const c of components) {
     const storyFiles = c.storyFiles.map((file, index) => {
@@ -90,7 +99,20 @@ for (const c of components) {
         entry,
         c.storyFiles.map((f) => `${c.importBase}/${path.basename(f, '.tsx')}`),
     );
-    writePage(entry, info ?? { description: `The ${entry.title} component.` });
+    const history = changelog.byComponent.get(entry.slug);
+    writePage(
+        entry,
+        info ?? { description: `The ${entry.title} component.` },
+        history && {
+            importLine: ENTRY_IMPORT,
+            mdx: history.map((e) => entryMdx(e, entry.slug)).join('\n\n'),
+        },
+    );
+    changelogComponents.push({
+        slug: entry.slug,
+        category: entry.category,
+        title: entry.title,
+    });
     byCategory.set(c.category.id, [
         ...(byCategory.get(c.category.id) ?? []),
         entry,
@@ -144,7 +166,11 @@ for (const category of CATEGORIES) {
     writeCategoryMeta(category.id, category.title, entries, groups);
 }
 
-console.log(`Generated docs for ${components.length} components.`);
+writeChangelog(changelog, changelogComponents);
+
+console.log(
+    `Generated docs for ${components.length} components and ${changelog.entries.length} changelog entries.`,
+);
 if (missing.length)
     console.warn(
         `No content/components/<slug>.md yet for: ${missing.join(', ')}`,

@@ -6,6 +6,7 @@
         "theming",
         "rtl",
         "forms",
+        "changelog",
         "...components",
         "---Form fields---",
         "...form"

@@ -16,8 +16,9 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 export const DEST = path.join(ROOT, 'foundation');
 const REPO = 'https://github.com/dosepehr/frontend-foundation.git';
 const SKIP = /\.(test|spec)\.[jt]sx?$|[/\\](e2e|test|mocks)([/\\]|$)/;
-// Folders copied from the library, relative to its root.
-export const SYNCED_DIRS = ['src', 'public/fonts'];
+// Folders copied from the library, relative to its root. changelog/ holds
+// the entries for the changelog page (scripts/generate/changelog.mjs).
+export const SYNCED_DIRS = ['src', 'public/fonts', 'changelog'];
 
 /** $FOUNDATION_DIR, a sibling ../frontend-foundation checkout, or a fresh clone. */
 export function resolveSource() {

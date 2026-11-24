@@ -16,6 +16,7 @@ next-env.d.ts
 /src/generated/
 /content/docs/components/
 /content/docs/form/
+/content/docs/changelog.mdx
 
 # misc
 .DS_Store
